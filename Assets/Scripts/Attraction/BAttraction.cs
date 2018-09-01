@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BAttraction : MonoBehaviour {
 
-    private int energySubtraction;
-    private int moneyEarned;
-    private int currCapacity;
-    private int maxCapacity;
-    private float timeSpentIn;
-    private int costToBuild;
+    public int energySubtraction;
+    public int moneyEarned;
+    public int currCapacity;
+    public int maxCapacity;
+    public float timeSpentIn;
+    public int costToBuild;
 
 	// Use this for initialization
 	void Start () {
@@ -20,11 +20,11 @@ public class BAttraction : MonoBehaviour {
 		
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy" && currCapacity != maxCapacity)
+        if(collision.gameObject.tag == "Enemy")
         {
-            holdTime(timeSpentIn, collision);
+            StartCoroutine(holdTime(timeSpentIn, collision));
 
         }
     }
@@ -34,6 +34,7 @@ public class BAttraction : MonoBehaviour {
         currCapacity += 1;
         collision.gameObject.GetComponent<Renderer>().enabled = false;
         collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = true;
+        collision.gameObject.GetComponent<EnemyControlScript>().energy -= energySubtraction;
 
         yield return new WaitForSeconds(holdTime);
 
