@@ -11,7 +11,7 @@ public class EnemyControlScript : MonoBehaviour
     public GameObject[] notAffected;
     public GameObject[] wayPoints;
     private bool isCaptured;
-    private Transform capturedTransform;
+    private Vector3 capturedTransform;
     private bool isLeaving;
     private int nextWayPoint;
     private bool isActive = true;
@@ -55,12 +55,12 @@ public class EnemyControlScript : MonoBehaviour
         }
     }
 
-    public IEnumerator moveTowardsExit(Transform exit)
+    public IEnumerator moveTowardsExit(Vector3 exit)
     {
-        while (Vector3.Distance(transform.position, exit.position) > 0.1)
+        while (Vector3.Distance(transform.position, exit) > 0.01)
         {
             //transform.GetComponent<Rigidbody2D>().velocity = ((attractor.position - transform.position).normalized * moveSpeed);
-            transform.position = Vector3.MoveTowards(transform.position, exit.position, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, exit, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
             yield return null;
         }
         isLeaving = false;
@@ -79,7 +79,7 @@ public class EnemyControlScript : MonoBehaviour
         Attractor.currCapacity--;
         gameObject.GetComponent<Renderer>().enabled = isLeaving = true;
         isCaptured = false;
-        moveTowardsExit(capturedTransform);
+        StartCoroutine(moveTowardsExit(capturedTransform));
 
     }
 
@@ -92,7 +92,7 @@ public class EnemyControlScript : MonoBehaviour
             if(Attractor.GetComponent<BAttraction>().currCapacity < Attractor.GetComponent<BAttraction>().maxCapacity)
             {
                 isCaptured = true;
-                capturedTransform = transform;
+                capturedTransform = transform.position;
                 StartCoroutine(moveTowardsAttractor(Attractor.transform));
             } 
         }
