@@ -21,11 +21,11 @@ public class SpawnControlScript : MonoBehaviour {
 
     void spawn(GameObject enemy)
     {
-        --cooldown;
+        cooldown -= Time.deltaTime;
         if(cooldown <= 0)
         {
             GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
-            enemyObj.GetComponent<Rigidbody2D>().velocity = (new Vector3(0, -1, 0)) * enemyObj.GetComponent<EnemyControlScript>().moveSpeed;
+            StartCoroutine(enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext());
             cooldown = maxCooldown;
         }
     }
