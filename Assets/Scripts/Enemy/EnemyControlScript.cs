@@ -5,17 +5,20 @@ using UnityEngine;
 public class EnemyControlScript : MonoBehaviour
 {
     public float moveSpeed;
-    public int energy;
+    public int maxEnergy;
+    private int energy;
     public GameObject[] notAffected;
     public GameObject[] wayPoints;
     private bool isCaptured;
     private int nextWayPoint;
+    private bool isActive = true;
 
     // Use this for initialization
     void Start()
     {
         nextWayPoint = 0;
         isCaptured = false;
+        energy = maxEnergy;
     }
 
     // Update is called once per frame
@@ -25,21 +28,21 @@ public class EnemyControlScript : MonoBehaviour
 
     public IEnumerator moveTowardsNext()
     {
-        while (!isCaptured && Vector3.Distance(transform.position, wayPoints[nextWayPoint].transform.position) > 0.1)
+        while (!isCaptured && isActive && Vector3.Distance(transform.position, wayPoints[nextWayPoint].transform.position) > 0.1)
         {
-            transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
+            transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed *((energy +moveSpeed)/(maxEnergy + moveSpeed)));
             //transform.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
             //transform.position = Vector3.MoveTowards(transform.position, wayPoints[nextWayPoint].transform.position, moveSpeed);
             yield return null;
         }
     }
 
-    public IEnumerator moveTowardsAtractor(Transform attractor)
+    public IEnumerator moveTowardsAttractor(Transform attractor)
     {
         while (Vector3.Distance(transform.position, attractor.position) > 0.5)
         {
             //transform.GetComponent<Rigidbody2D>().velocity = ((attractor.position - transform.position).normalized * moveSpeed);
-            transform.position = Vector3.MoveTowards(transform.position, attractor.position, moveSpeed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, attractor.position, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
             yield return null;
 
         }
@@ -64,17 +67,33 @@ public class EnemyControlScript : MonoBehaviour
             if(Attractor.GetComponent<BAttraction>().currCapacity < Attractor.GetComponent<BAttraction>().maxCapacity)
             {
                 isCaptured = true;
-                StartCoroutine(moveTowardsAtractor(Attractor.transform));
+                StartCoroutine(moveTowardsAttractor(Attractor.transform));
             } 
         }
-        if(other.transform.tag == "Attraction")
+        else if(other.transform.tag == "Attraction")
         {
-            StartCoroutine(derez(other.transform.gameObject.GetComponent<BAttraction>().timeSpentIn));
+            BAttraction Attractor = other.transform.gameObject.GetComponent<BAttraction>();
+            StartCoroutine(derez(Attractor.timeSpentIn));
+            StartCoroutine(Attractor.holdTime(Attractor.timeSpentIn));
+            energy -= Attractor.energySubtraction;
         }
-        if (other.transform.tag == "Waypoint")
+        else if (other.transform.tag == "Waypoint")
         {
             ++nextWayPoint;
             StartCoroutine(moveTowardsNext());
+        }
+        else if(other.transform.tag=="Final")
+        {
+            if (energy <= 0)
+                nextWayPoint += 2;
+            else
+                ++nextWayPoint;
+            StartCoroutine(moveTowardsNext());
+        }
+        else if(other.transform.tag == "Town" || other.transform.tag == "Hotel")
+        {
+            isActive = false;
+            Destroy(this.gameObject);
         }
     }
 }

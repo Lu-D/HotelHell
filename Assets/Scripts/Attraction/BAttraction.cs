@@ -20,56 +20,15 @@ public class BAttraction : MonoBehaviour {
 		
 	}
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public IEnumerator holdTime(float holdTime)
     {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            StartCoroutine(holdTime(timeSpentIn, collision));
-
-        }
-    }
-
-    public IEnumerator holdTime(float holdTime, Collision2D collision)
-    {
-        currCapacity += 1;
+        ++currCapacity;
         //collision.gameObject.GetComponent<Renderer>().enabled = false;
         //collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = true;
         //collision.gameObject.GetComponent<EnemyControlScript>().energy -= energySubtraction;
 
         yield return new WaitForSeconds(holdTime);
 
-        currCapacity -= 1;
- 
-
-    }
-
-    public int getEnergySubtraction()
-    {
-        return energySubtraction;
-    }
-
-    public int getMoneyEarned()
-    {
-        return moneyEarned;
-    }
-
-    public int getMaxCapacity()
-    {
-        return maxCapacity;
-    }
-
-    public int getCurrCapacity()
-    {
-        return currCapacity;
-    }
-
-    public float getTimeSpentIn()
-    {
-        return timeSpentIn;
-    }
-
-    public int getCostToBuild()
-    {
-        return costToBuild;
+        --currCapacity;
     }
 }
