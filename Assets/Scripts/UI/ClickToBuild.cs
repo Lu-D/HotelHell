@@ -9,6 +9,8 @@ public class ClickToBuild : MonoBehaviour {
     public bool isBuilding;
     public string buildType;
     public float rotationDegrees;
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +43,15 @@ public class ClickToBuild : MonoBehaviour {
             Debug.Log(rotationDegrees);
             Debug.Log("key pressed");
 
+        }
+
+        if (isBuilding && buildType == "testAttract")
+        {
+            Cursor.SetCursor(buildings[0].GetComponent<SpriteRenderer>().sprite.texture, Vector2.zero, cursorMode);
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, cursorMode);
         }
 
         if (Input.GetMouseButtonDown(0) && isBuilding && buildType == "testAttract")
