@@ -20,15 +20,15 @@ public class BAttraction : MonoBehaviour {
 		
 	}
 
-    public IEnumerator holdTime(float holdTime)
-    {
-        ++currCapacity;
-        //collision.gameObject.GetComponent<Renderer>().enabled = false;
-        //collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = true;
-        //collision.gameObject.GetComponent<EnemyControlScript>().energy -= energySubtraction;
+    //public IEnumerator holdTime(float holdTime)
+    //{
+    //    ++currCapacity;
+    //    //collision.gameObject.GetComponent<Renderer>().enabled = false;
+    //    //collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = true;
+    //    //collision.gameObject.GetComponent<EnemyControlScript>().energy -= energySubtraction;
 
-        yield return new WaitForSeconds(holdTime);
+    //    yield return new WaitForSeconds(holdTime);
 
-        --currCapacity;
-    }
+    //    --currCapacity;
+    //}
 }

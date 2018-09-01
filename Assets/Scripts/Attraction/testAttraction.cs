@@ -6,12 +6,12 @@ public class testAttraction : BAttraction {
 
 	// Use this for initialization
 	void Start () {
-        energySubtraction = 1;
-        moneyEarned = 5;
-        currCapacity = 0;
-        maxCapacity = 3;
-        timeSpentIn = 3;
-        costToBuild = 5;
+        //energySubtraction;
+        //moneyEarned;
+        //currCapacity;
+        //maxCapacity;
+        //timeSpentIn;
+        //costToBuild;
 	}
 	
 	// Update is called once per frame

@@ -44,15 +44,16 @@ public class EnemyControlScript : MonoBehaviour
             //transform.GetComponent<Rigidbody2D>().velocity = ((attractor.position - transform.position).normalized * moveSpeed);
             transform.position = Vector3.MoveTowards(transform.position, attractor.position, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
             yield return null;
-
         }
     }
 
-    public IEnumerator derez(float timeSpentIn)
+    public IEnumerator derez(float timeSpentIn, BAttraction Attractor)
     {
         transform.GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
         gameObject.GetComponent<Renderer>().enabled = false;
+        Attractor.currCapacity++;
         yield return new WaitForSeconds(timeSpentIn);
+        Attractor.currCapacity--;
         gameObject.GetComponent<Renderer>().enabled = true;
         isCaptured = false;
         StartCoroutine(moveTowardsNext());
@@ -70,19 +71,20 @@ public class EnemyControlScript : MonoBehaviour
                 StartCoroutine(moveTowardsAttractor(Attractor.transform));
             } 
         }
-        else if(other.transform.tag == "Attraction")
+        if(other.transform.tag == "Attraction")
         {
+            Debug.Log("Uh oh");
             BAttraction Attractor = other.transform.gameObject.GetComponent<BAttraction>();
-            StartCoroutine(derez(Attractor.timeSpentIn));
-            StartCoroutine(Attractor.holdTime(Attractor.timeSpentIn));
+            StartCoroutine(derez(Attractor.timeSpentIn, Attractor));
+            //StartCoroutine(Attractor.holdTime(Attractor.timeSpentIn));
             energy -= Attractor.energySubtraction;
         }
-        else if (other.transform.tag == "Waypoint")
+        if (other.transform.tag == "Waypoint")
         {
             ++nextWayPoint;
             StartCoroutine(moveTowardsNext());
         }
-        else if(other.transform.tag=="Final")
+        if(other.transform.tag=="Final")
         {
             if (energy <= 0)
                 nextWayPoint += 2;
@@ -90,7 +92,7 @@ public class EnemyControlScript : MonoBehaviour
                 ++nextWayPoint;
             StartCoroutine(moveTowardsNext());
         }
-        else if(other.transform.tag == "Town" || other.transform.tag == "Hotel")
+        if(other.transform.tag == "Town" || other.transform.tag == "Hotel")
         {
             isActive = false;
             Destroy(this.gameObject);
