@@ -16,6 +16,7 @@ public class TownControlScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        trashSlider.value = trashCount;
+        trashSlider.maxValue = trashCapacity;
 	}
 }

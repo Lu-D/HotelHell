@@ -63,6 +63,24 @@ public class ClickToBuild : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        if (Input.GetKeyDown("t"))
+        {
+            Debug.Log("works1");
+            if (Time.timeScale == 3.0f)
+            {
+                Time.timeScale = 1.0f;
+            }
+            else if (Time.timeScale == 2.0f)
+            {
+                Time.timeScale = 3.0f;
+            }
+            else
+            {
+                Time.timeScale = 2.0f;
+            }
+
+        }
+
         if (isBuilding && Input.GetKeyDown("space"))
         {
             rotationDegrees += 90;
