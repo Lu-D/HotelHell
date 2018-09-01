@@ -58,6 +58,10 @@ public class EnemyControlScript : MonoBehaviour
         transform.GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
         gameObject.GetComponent<Renderer>().enabled = false;
         Attractor.currCapacity++;
+
+        ClickToBuild UIcontrol = GameObject.Find("PlayerController").GetComponent<ClickToBuild>();
+        UIcontrol.currMoney += Attractor.moneyEarned;
+
         yield return new WaitForSeconds(timeSpentIn);
         Attractor.currCapacity--;
         gameObject.GetComponent<Renderer>().enabled = true;
