@@ -6,14 +6,13 @@ public class BAttraction : MonoBehaviour {
 
     private int energySubtraction;
     private int moneyEarned;
-    private int capacity;
+    private int currCapacity;
+    private int maxCapacity;
     private float timeSpentIn;
     private int costToBuild;
-    private Collider2D myCollider;
 
 	// Use this for initialization
 	void Start () {
-        //myCollider = gameObject.transform.GetChild(0).GetComponent<Collider2D>();
 	}
 	
 	// Update is called once per frame
@@ -23,10 +22,24 @@ public class BAttraction : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy" && currCapacity != maxCapacity)
         {
-            collision.gameObject.GetComponent<Renderer>().enabled = false;
+            
+
         }
+    }
+
+    public IEnumerator holdTime(float holdTime, Collision2D collision)
+    {
+        currCapacity += 1;
+        collision.gameObject.GetComponent<Renderer>().enabled = false;
+        collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = true;
+
+        yield return new WaitForSeconds(holdTime);
+
+        currCapacity -= 1;
+        collision.gameObject.GetComponent<Renderer>().enabled = true;
+        collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = false;
     }
 
     public int getEnergySubtraction()
@@ -39,9 +52,14 @@ public class BAttraction : MonoBehaviour {
         return moneyEarned;
     }
 
-    public int getCapacity()
+    public int getMaxCapacity()
     {
-        return capacity;
+        return maxCapacity;
+    }
+
+    public int getCurrCapacity()
+    {
+        return currCapacity;
     }
 
     public float getTimeSpentIn()
