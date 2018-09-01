@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CameraControlScript : MonoBehaviour {
+public class gameOverScript : MonoBehaviour {
 
     public Texture gameOverTexture;
 
