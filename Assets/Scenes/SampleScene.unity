@@ -913,6 +913,43 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!1 &1608254896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1629935958263298, guid: c15bad93806b29b44bbbac778b47efae,
+    type: 2}
+  m_PrefabInternal: {fileID: 1625427319}
+--- !u!60 &1608254900
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1608254896}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.046673723, y: 0.06933779}
+      - {x: -0.07019161, y: 0.0497685}
+      - {x: -0.06937428, y: -0.042414922}
+      - {x: -0.04672031, y: -0.0710301}
+      - {x: 0.039958317, y: -0.07114082}
+      - {x: 0.070095785, y: -0.04159784}
+      - {x: 0.06720019, y: 0.049765527}
+      - {x: 0.042401284, y: 0.06999999}
 --- !u!1001 &1611208297
 Prefab:
   m_ObjectHideFlags: 0
@@ -1046,6 +1083,14 @@ Prefab:
     - target: {fileID: 1374276064066210, guid: c15bad93806b29b44bbbac778b47efae, type: 2}
       propertyPath: m_Name
       value: attraction collider
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374276064066210, guid: c15bad93806b29b44bbbac778b47efae, type: 2}
+      propertyPath: m_TagString
+      value: Attraction Collider
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629935958263298, guid: c15bad93806b29b44bbbac778b47efae, type: 2}
+      propertyPath: m_TagString
+      value: Attraction
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15bad93806b29b44bbbac778b47efae, type: 2}
@@ -1273,7 +1318,7 @@ Prefab:
     - target: {fileID: 114710960801933552, guid: 53f8294892eed0b4994f1efb3be3bdc2,
         type: 2}
       propertyPath: moveSpeed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 50341640286969126, guid: 53f8294892eed0b4994f1efb3be3bdc2, type: 2}
