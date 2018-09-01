@@ -89,7 +89,12 @@ public class ClickToBuild : MonoBehaviour {
 
         }
 
-        build("testAttract", 0);
+        build("GameStop", 0);
+        build("Hooters", 1);
+        build("Supreme", 2);
+        build("See-Saw", 3);
+        build("AMC", 4);
+        build("DisneyCastle", 5);
 
         moneyText.text = "Current money: " + currMoney;
 
