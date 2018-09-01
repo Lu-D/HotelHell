@@ -476,7 +476,6 @@ GameObject:
   - component: {fileID: 542179907}
   - component: {fileID: 542179906}
   - component: {fileID: 542179905}
-  - component: {fileID: 542179917}
   m_Layer: 10
   m_Name: RoadCollider
   m_TagString: Road
@@ -784,17 +783,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.1636624, y: 0.34379905}
   m_EdgeRadius: 0
---- !u!114 &542179917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 542179903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8711643b0ea06f4bb0c1efa5958b3e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &614751633
 Prefab:
   m_ObjectHideFlags: 0
