@@ -28,18 +28,19 @@ public class EnemyControlScript : MonoBehaviour
     {
         while (!isCaptured && Vector3.Distance(transform.position, wayPoints[nextWayPoint].transform.position) > 0.1)
         {
-            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-            transform.position = Vector3.MoveTowards(transform.position, wayPoints[nextWayPoint].transform.position, moveSpeed);
+            transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
+            //transform.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+            //transform.position = Vector3.MoveTowards(transform.position, wayPoints[nextWayPoint].transform.position, moveSpeed);
             yield return null;
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collided");
-        ++nextWayPoint;
+        if(other.transform.tag == "Waypoint")
+        {
+            ++nextWayPoint;
+        }
         StartCoroutine(moveTowardsNext());
-        Debug.Log("Called Coroutine");
-        Debug.Log(nextWayPoint);
     }
 }
