@@ -6,6 +6,7 @@ public class ClickToBuild : MonoBehaviour {
 
     public GameObject[] buildings;
     public Camera c;
+    bool validBuild;
 
 	// Use this for initialization
 	void Start () {
@@ -14,11 +15,12 @@ public class ClickToBuild : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
+
+        if(Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0) && validBuild)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            c.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 0));
-            Instantiate(buildings[0], mousePosition, Quaternion.identity);
+            Instantiate(buildings[0], c.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), Quaternion.identity);
         }
 	}
 }
