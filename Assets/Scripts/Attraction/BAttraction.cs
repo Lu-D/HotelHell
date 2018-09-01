@@ -24,7 +24,7 @@ public class BAttraction : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Enemy" && currCapacity != maxCapacity)
         {
-            
+            holdTime(timeSpentIn, collision);
 
         }
     }
