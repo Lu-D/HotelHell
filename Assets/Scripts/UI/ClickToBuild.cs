@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClickToBuild : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class ClickToBuild : MonoBehaviour {
     public float rotationDegrees;
     public CursorMode cursorMode = CursorMode.Auto;
     public int currMoney;
+    public Text moneyText;
 
     private Vector2 cursorHotspot;
 
@@ -21,6 +23,7 @@ public class ClickToBuild : MonoBehaviour {
         isBuilding = false;
         buildType = "";
         rotationDegrees = 0;
+        currMoney = 4;
 	}
 
     public void buildSelect() {
@@ -40,7 +43,7 @@ public class ClickToBuild : MonoBehaviour {
 
     void build(string currBuilding, int buildArrayIndx)
     {
-        if (Input.GetMouseButtonDown(0) && isBuilding && buildType == currBuilding)
+        if (Input.GetMouseButtonDown(0) && isBuilding && buildType == currBuilding && buildings[buildArrayIndx].GetComponent<BAttraction>().costToBuild <= currMoney)
         {
 
             if (validBuild)
@@ -51,6 +54,7 @@ public class ClickToBuild : MonoBehaviour {
                 Cursor.SetCursor(null, Vector2.zero, cursorMode);
                 isBuilding = false;
                 buildType = "";
+                currMoney -= buildings[buildArrayIndx].GetComponent<BAttraction>().costToBuild;
                 rotationDegrees = 0;
             }
         }
@@ -68,5 +72,16 @@ public class ClickToBuild : MonoBehaviour {
         }
 
         build("testAttract", 0);
+
+        moneyText.text = "Current money: " + currMoney;
+        Debug.Log(currMoney);
+
+        if (Input.GetMouseButton(1))
+        {
+            Cursor.SetCursor(null, Vector2.zero, cursorMode);
+            isBuilding = false;
+            buildType = "";
+            rotationDegrees = 0;
+        }
     }
 }

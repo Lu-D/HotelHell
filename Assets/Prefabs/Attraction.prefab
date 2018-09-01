@@ -197,11 +197,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energySubtraction: 2
-  moneyEarned: 0
+  moneyEarned: 2
   currCapacity: 0
   maxCapacity: 2
   timeSpentIn: 3
-  costToBuild: 0
+  costToBuild: 1
 --- !u!212 &212276568694447184
 SpriteRenderer:
   m_ObjectHideFlags: 1
