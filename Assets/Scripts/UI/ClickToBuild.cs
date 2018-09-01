@@ -10,7 +10,10 @@ public class ClickToBuild : MonoBehaviour {
     public string buildType;
     public float rotationDegrees;
     public CursorMode cursorMode = CursorMode.Auto;
+    public int currMoney;
+
     private Vector2 cursorHotspot;
+
 
     // Use this for initialization
     void Start () {
