@@ -32,15 +32,15 @@ public class BAttraction : MonoBehaviour {
     public IEnumerator holdTime(float holdTime, Collision2D collision)
     {
         currCapacity += 1;
-        collision.gameObject.GetComponent<Renderer>().enabled = false;
-        collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = true;
-        collision.gameObject.GetComponent<EnemyControlScript>().energy -= energySubtraction;
+        //collision.gameObject.GetComponent<Renderer>().enabled = false;
+        //collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = true;
+        //collision.gameObject.GetComponent<EnemyControlScript>().energy -= energySubtraction;
 
         yield return new WaitForSeconds(holdTime);
 
         currCapacity -= 1;
-        collision.gameObject.GetComponent<Renderer>().enabled = true;
-        collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = false;
+ 
+
     }
 
     public int getEnergySubtraction()
