@@ -9,11 +9,11 @@ public class ClickToBuild : MonoBehaviour {
     public bool isBuilding;
     public string buildType;
     public float rotationDegrees;
-    public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 cursorHotspot;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         validBuild = false;
         isBuilding = false;
         buildType = "";
@@ -29,11 +29,28 @@ public class ClickToBuild : MonoBehaviour {
         buildType = building;
     }
 
-    public void setCursor()
+    public void setCursor(int buildArrayIndx)
     {
-        Cursor.SetCursor(buildings[0].GetComponent<SpriteRenderer>().sprite.texture, new Vector2(-1f, 1f) + transform.position, cursorMode);
-        
-        
+        cursorHotspot = new Vector2(buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+        Cursor.SetCursor(buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture, cursorHotspot, cursorMode);     
+    }
+
+    void build(string currBuilding, int buildArrayIndx)
+    {
+        if (Input.GetMouseButtonDown(0) && isBuilding && buildType == currBuilding)
+        {
+
+            if (validBuild)
+            {
+                GameObject building = (GameObject)Instantiate(buildings[buildArrayIndx], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
+                building.transform.Rotate(0, 0, rotationDegrees, Space.Self);
+
+                Cursor.SetCursor(null, Vector2.zero, cursorMode);
+                isBuilding = false;
+                buildType = "";
+                rotationDegrees = 0;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -47,29 +64,6 @@ public class ClickToBuild : MonoBehaviour {
 
         }
 
-        if (Input.GetMouseButtonDown(0) && isBuilding && buildType == "testAttract")
-        {
-
-            if (validBuild) {
-                GameObject building = (GameObject)Instantiate(buildings[0], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
-                building.transform.Rotate(0, 0, rotationDegrees, Space.Self);
-
-                Cursor.SetCursor(null, Vector2.zero, cursorMode);
-                isBuilding = false;
-                buildType = "";
-                rotationDegrees = 0;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0) && isBuilding && buildType == "testAttract2")
-        {
-
-            if (validBuild)
-            {
-                Instantiate(buildings[1], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
-                isBuilding = false;
-                buildType = "";
-            }
-        }
+        build("testAttract", 0);
     }
 }
