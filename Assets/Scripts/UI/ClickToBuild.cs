@@ -24,14 +24,16 @@ public class ClickToBuild : MonoBehaviour {
         isBuilding = true;
     }
 
-    public void testAttract()
+    public void testAttract(string building)
     {
-        buildType = "testAttract";
+        buildType = building;
     }
 
-    public void testAttract2()
+    public void setCursor()
     {
-        buildType = "testAttract2";
+        Cursor.SetCursor(buildings[0].GetComponent<SpriteRenderer>().sprite.texture, new Vector2(-1f, 1f) + transform.position, cursorMode);
+        
+        
     }
 
     // Update is called once per frame
@@ -45,22 +47,14 @@ public class ClickToBuild : MonoBehaviour {
 
         }
 
-        if (isBuilding && buildType == "testAttract")
-        {
-            Cursor.SetCursor(buildings[0].GetComponent<SpriteRenderer>().sprite.texture, Vector2.zero, cursorMode);
-        }
-        else
-        {
-            Cursor.SetCursor(null, Vector2.zero, cursorMode);
-        }
-
         if (Input.GetMouseButtonDown(0) && isBuilding && buildType == "testAttract")
         {
 
             if (validBuild) {
                 GameObject building = (GameObject)Instantiate(buildings[0], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
                 building.transform.Rotate(0, 0, rotationDegrees, Space.Self);
-                Debug.Log(building.transform.rotation);
+
+                Cursor.SetCursor(null, Vector2.zero, cursorMode);
                 isBuilding = false;
                 buildType = "";
                 rotationDegrees = 0;
