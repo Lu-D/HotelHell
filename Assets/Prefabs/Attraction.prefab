@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4129356575470096}
   - component: {fileID: 61024159599616788}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: attraction collider
+  m_TagString: Attraction Collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,9 +37,10 @@ GameObject:
   - component: {fileID: 4949547358412294}
   - component: {fileID: 212643405567301720}
   - component: {fileID: 114980306969212862}
+  - component: {fileID: 60079746162291524}
   m_Layer: 0
   m_Name: Attraction
-  m_TagString: Untagged
+  m_TagString: Attraction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,6 +72,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60079746162291524
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629935958263298}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.046673723, y: 0.06933779}
+      - {x: -0.07019161, y: 0.0497685}
+      - {x: -0.06937428, y: -0.042414922}
+      - {x: -0.04672031, y: -0.0710301}
+      - {x: 0.039958317, y: -0.07114082}
+      - {x: 0.070095785, y: -0.04159784}
+      - {x: 0.06720019, y: 0.049765527}
+      - {x: 0.042401284, y: 0.06999999}
 --- !u!61 &61024159599616788
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -107,6 +140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dcfb5f4340b8644bd3974efa754e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energySubtraction: 0
+  moneyEarned: 0
+  currCapacity: 0
+  maxCapacity: 0
+  timeSpentIn: 0
+  costToBuild: 0
 --- !u!212 &212643405567301720
 SpriteRenderer:
   m_ObjectHideFlags: 1
