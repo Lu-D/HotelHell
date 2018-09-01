@@ -6,7 +6,7 @@ public class SpawnControlScript : MonoBehaviour {
     public float cooldown;
     public GameObject[] Enemies;
     private float maxCooldown;
-    private uint waveNumber;
+    public int waveNumber;
     private List<int> waves;
 
     void Awake()
@@ -31,36 +31,33 @@ public class SpawnControlScript : MonoBehaviour {
     
     public void startWave()
     {
+        ++waveNumber;
         StartCoroutine(waveIterator());
     }
 
     IEnumerator waveIterator()
     {
+        waves.Add(0);
+        if (waveNumber%7 == 0 && waveNumber > 6)
+        {
+            waves.Add(4);
+        }
+        if(waveNumber%5 == 0 && waveNumber > 4)
+        {
+            waves.Add(3);
+        }
+        if(waveNumber%4 == 0 && waveNumber > 3)
+        {
+            waves.Add(2);
+        }
+        if(waveNumber%3 == 0 && waveNumber > 1)
+        {
+            waves.Add(1);
+        }
         foreach (int enemyNum in waves)
         {
             spawn(Enemies[enemyNum]);
             yield return new WaitForSeconds(maxCooldown);
-        }
-
-        if(waveNumber%7 == 0 && waveNumber > 7)
-        {
-            waves.Add(4);
-        }
-        if(waveNumber%5 == 0 && waveNumber > 5)
-        {
-            waves.Add(3);
-        }
-        if(waveNumber%4 == 0 && waveNumber > 4)
-        {
-            waves.Add(2);
-        }
-        if(waveNumber%3 == 0)
-        {
-            waves.Add(1);
-        }
-        else
-        {
-            waves.Add(0);
         }
     }
 
