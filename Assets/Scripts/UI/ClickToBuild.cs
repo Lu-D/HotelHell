@@ -9,7 +9,7 @@ public class ClickToBuild : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        validBuild = true;
+        validBuild = false;
 	}
 	
 	// Update is called once per frame
