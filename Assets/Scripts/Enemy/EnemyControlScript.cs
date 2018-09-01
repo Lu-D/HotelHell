@@ -39,8 +39,6 @@ public class EnemyControlScript : MonoBehaviour
         while (!isCaptured && isActive && Vector3.Distance(transform.position, wayPoints[nextWayPoint].transform.position) > 0.1)
         {
             transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed *((energy +moveSpeed)/(maxEnergy + moveSpeed)));
-            //transform.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-            //transform.position = Vector3.MoveTowards(transform.position, wayPoints[nextWayPoint].transform.position, moveSpeed);
             yield return null;
         }
     }
@@ -49,7 +47,6 @@ public class EnemyControlScript : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, attractor.position) > 0.5)
         {
-            //transform.GetComponent<Rigidbody2D>().velocity = ((attractor.position - transform.position).normalized * moveSpeed);
             transform.position = Vector3.MoveTowards(transform.position, attractor.position, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
             yield return null;
         }
@@ -59,7 +56,6 @@ public class EnemyControlScript : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, exit) > 0.01)
         {
-            //transform.GetComponent<Rigidbody2D>().velocity = ((attractor.position - transform.position).normalized * moveSpeed);
             transform.position = Vector3.MoveTowards(transform.position, exit, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
             yield return null;
         }
@@ -100,8 +96,12 @@ public class EnemyControlScript : MonoBehaviour
         {
             BAttraction Attractor = other.transform.gameObject.GetComponent<BAttraction>();
             StartCoroutine(derez(Attractor.timeSpentIn, Attractor));
-            //StartCoroutine(Attractor.holdTime(Attractor.timeSpentIn));
             energy -= Attractor.energySubtraction;
+
+            if(energy <= 0)
+            {
+                transform.gameObject.GetComponent<Renderer>().material.color = Color.grey;
+            }
         }
         else if (other.transform.tag == "Waypoint")
         {
