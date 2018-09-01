@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnControlScript : MonoBehaviour {
+public class EnemyControlScript : MonoBehaviour {
+    public float movespeed;
+    public int energy;
+    public GameObject[] notAffected;
+    public bool isCaptured;
+    public bool isLeaving;
 
 	// Use this for initialization
 	void Start () {
