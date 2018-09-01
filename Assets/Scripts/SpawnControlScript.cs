@@ -6,27 +6,68 @@ public class SpawnControlScript : MonoBehaviour {
     public float cooldown;
     public GameObject[] Enemies;
     private float maxCooldown;
+    private uint waveNumber;
+    private List<int> waves;
+
+    void Awake()
+    {   
+        maxCooldown = cooldown;
+        waveNumber = 0;
+        waves = new List<int>();
+        for (uint i = 0; i < 3; ++i)
+        {
+            waves.Add(0);
+        }
+    }
 
 
 	// Use this for initialization
 	void Start () {
-        maxCooldown = cooldown;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+    }
+    
+    public void startWave()
+    {
+        StartCoroutine(waveIterator());
+    }
 
-        spawn(Enemies[0]);
-	}
+    IEnumerator waveIterator()
+    {
+        foreach (int enemyNum in waves)
+        {
+            spawn(Enemies[enemyNum]);
+            yield return new WaitForSeconds(maxCooldown);
+        }
+
+        if(waveNumber%7 == 0 && waveNumber > 7)
+        {
+            waves.Add(4);
+        }
+        if(waveNumber%5 == 0 && waveNumber > 5)
+        {
+            waves.Add(3);
+        }
+        if(waveNumber%4 == 0 && waveNumber > 4)
+        {
+            waves.Add(2);
+        }
+        if(waveNumber%3 == 0)
+        {
+            waves.Add(1);
+        }
+        else
+        {
+            waves.Add(0);
+        }
+    }
 
     void spawn(GameObject enemy)
     {
-        cooldown -= Time.deltaTime;
-        if(cooldown <= 0)
-        {
-            GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
-            StartCoroutine(enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext());
-            cooldown = maxCooldown;
-        }
+        GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
+        StartCoroutine(enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext());
     }
+
 }
