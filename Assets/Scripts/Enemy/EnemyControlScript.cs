@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyControlScript : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class EnemyControlScript : MonoBehaviour
 
     // Use this for initialization
     void Start()
+    {
+
+    }
+
+    void Awake()
     {
         nextWayPoint = 0;
         isCaptured = false;
@@ -71,20 +77,20 @@ public class EnemyControlScript : MonoBehaviour
                 StartCoroutine(moveTowardsAttractor(Attractor.transform));
             } 
         }
-        if(other.transform.tag == "Attraction")
+        else if(other.transform.tag == "Attraction")
         {
-            Debug.Log("Uh oh");
+
             BAttraction Attractor = other.transform.gameObject.GetComponent<BAttraction>();
             StartCoroutine(derez(Attractor.timeSpentIn, Attractor));
             //StartCoroutine(Attractor.holdTime(Attractor.timeSpentIn));
             energy -= Attractor.energySubtraction;
         }
-        if (other.transform.tag == "Waypoint")
+        else if (other.transform.tag == "Waypoint")
         {
             ++nextWayPoint;
             StartCoroutine(moveTowardsNext());
         }
-        if(other.transform.tag=="Final")
+        else if(other.transform.tag=="Final")
         {
             if (energy <= 0)
                 nextWayPoint += 2;
@@ -92,7 +98,18 @@ public class EnemyControlScript : MonoBehaviour
                 ++nextWayPoint;
             StartCoroutine(moveTowardsNext());
         }
-        if(other.transform.tag == "Town" || other.transform.tag == "Hotel")
+        else if(other.transform.tag == "Town")
+        {
+            TownControlScript control = other.transform.gameObject.GetComponent <TownControlScript>();
+            control.trashCount += energy * control.trashPerEnergy;
+            if(control.trashCount > control.trashCapacity)
+            {
+                SceneManager.LoadScene("gameOverScene");
+            }
+            isActive = false;
+            Destroy(this.gameObject);
+        }
+        else if(other.transform.tag == "Hotel")
         {
             isActive = false;
             Destroy(this.gameObject);
