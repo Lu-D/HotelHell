@@ -21,7 +21,6 @@ public class EnemyControlScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isCaptured);
     }
 
     public IEnumerator moveTowardsNext()
@@ -77,6 +76,5 @@ public class EnemyControlScript : MonoBehaviour
             ++nextWayPoint;
             StartCoroutine(moveTowardsNext());
         }
-
     }
 }
