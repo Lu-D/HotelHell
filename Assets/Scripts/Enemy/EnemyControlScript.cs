@@ -68,7 +68,7 @@ public class EnemyControlScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.transform.tag == "Attraction Collider")
+        if (other.transform.tag == "Attraction Collider" && energy > 0)
         {
             GameObject Attractor = other.transform.parent.gameObject;
             if(Attractor.GetComponent<BAttraction>().currCapacity < Attractor.GetComponent<BAttraction>().maxCapacity)
