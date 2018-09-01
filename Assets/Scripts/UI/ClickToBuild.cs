@@ -74,7 +74,6 @@ public class ClickToBuild : MonoBehaviour {
         build("testAttract", 0);
 
         moneyText.text = "Current money: " + currMoney;
-        Debug.Log(currMoney);
 
         if (Input.GetMouseButton(1))
         {

@@ -57,7 +57,7 @@ public class EnemyControlScript : MonoBehaviour
 
     public IEnumerator moveTowardsExit(Transform exit)
     {
-        while (Vector3.Distance(transform.position, attractor.position) > 0.5)
+        while (Vector3.Distance(transform.position, exit.position) > 0.1)
         {
             //transform.GetComponent<Rigidbody2D>().velocity = ((attractor.position - transform.position).normalized * moveSpeed);
             transform.position = Vector3.MoveTowards(transform.position, exit.position, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
@@ -92,7 +92,7 @@ public class EnemyControlScript : MonoBehaviour
             if(Attractor.GetComponent<BAttraction>().currCapacity < Attractor.GetComponent<BAttraction>().maxCapacity)
             {
                 isCaptured = true;
-                capturedTransform = transform.position;
+                capturedTransform = transform;
                 StartCoroutine(moveTowardsAttractor(Attractor.transform));
             } 
         }
