@@ -8,6 +8,10 @@ TagManager:
   - Attraction
   - Attraction Collider
   - Waypoint
+  - Road
+  - Final
+  - Hotel
+  - Town
   layers:
   - Default
   - TransparentFX

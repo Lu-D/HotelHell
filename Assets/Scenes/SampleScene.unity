@@ -156,6 +156,14 @@ Prefab:
       propertyPath: m_Name
       value: FinalPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 1817958319340010, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
+      propertyPath: m_TagString
+      value: Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817958319340010, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
   m_IsPrefabAsset: 0
@@ -489,6 +497,14 @@ Prefab:
     - target: {fileID: 1817958319340010, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
       propertyPath: m_Name
       value: HotelPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817958319340010, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
+      propertyPath: m_TagString
+      value: Hotel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817958319340010, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
@@ -1038,7 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a5c410f217c5d4599066b4ac42042e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
+  cooldown: 0.5
   Enemies:
   - {fileID: 1667863263}
 --- !u!1001 &1625427319
@@ -1091,6 +1107,16 @@ Prefab:
     - target: {fileID: 1629935958263298, guid: c15bad93806b29b44bbbac778b47efae, type: 2}
       propertyPath: m_TagString
       value: Attraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 114980306969212862, guid: c15bad93806b29b44bbbac778b47efae,
+        type: 2}
+      propertyPath: maxCapacity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114980306969212862, guid: c15bad93806b29b44bbbac778b47efae,
+        type: 2}
+      propertyPath: timeSpentIn
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15bad93806b29b44bbbac778b47efae, type: 2}
@@ -1318,7 +1344,7 @@ Prefab:
     - target: {fileID: 114710960801933552, guid: 53f8294892eed0b4994f1efb3be3bdc2,
         type: 2}
       propertyPath: moveSpeed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 50341640286969126, guid: 53f8294892eed0b4994f1efb3be3bdc2, type: 2}
@@ -1514,6 +1540,14 @@ Prefab:
     - target: {fileID: 1817958319340010, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
       propertyPath: m_Name
       value: TownPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817958319340010, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
+      propertyPath: m_TagString
+      value: Town
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817958319340010, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3903c3516fb739745b746dafe0b7e6f2, type: 2}
