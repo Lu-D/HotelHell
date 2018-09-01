@@ -100,6 +100,10 @@ public class EnemyControlScript : MonoBehaviour
 
             if(energy <= 0)
             {
+                if(energy < 0)
+                {
+                    energy == 0;
+                }
                 transform.gameObject.GetComponent<Renderer>().material.color = Color.grey;
             }
         }
