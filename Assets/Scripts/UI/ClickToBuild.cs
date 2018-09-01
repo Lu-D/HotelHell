@@ -7,29 +7,64 @@ public class ClickToBuild : MonoBehaviour {
     public GameObject[] buildings;
     public bool validBuild;
     public bool isBuilding;
+    public string buildType;
+    public float rotationDegrees;
 
 	// Use this for initialization
 	void Start () {
         validBuild = false;
         isBuilding = false;
+        buildType = "";
+        rotationDegrees = 0;
 	}
 
     public void buildSelect() {
         isBuilding = true;
     }
 
-	// Update is called once per frame
-	void Update () {
+    public void testAttract()
+    {
+        buildType = "testAttract";
+    }
 
-        Debug.Log(validBuild);
+    public void testAttract2()
+    {
+        buildType = "testAttract2";
+    }
 
-        if (Input.GetMouseButtonDown(0) && isBuilding)
+    // Update is called once per frame
+    void Update () {
+
+        if (isBuilding && Input.GetKeyDown("space"))
+        {
+            rotationDegrees += 90;
+            Debug.Log(rotationDegrees);
+            Debug.Log("key pressed");
+
+        }
+
+        if (Input.GetMouseButtonDown(0) && isBuilding && buildType == "testAttract")
         {
 
             if (validBuild) {
-                Instantiate(buildings[0], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
+                GameObject building = (GameObject)Instantiate(buildings[0], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
+                building.transform.Rotate(0, 0, rotationDegrees, Space.Self);
+                Debug.Log(building.transform.rotation);
                 isBuilding = false;
+                buildType = "";
+                rotationDegrees = 0;
             }
         }
-	}
+
+        if (Input.GetMouseButtonDown(0) && isBuilding && buildType == "testAttract2")
+        {
+
+            if (validBuild)
+            {
+                Instantiate(buildings[1], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
+                isBuilding = false;
+                buildType = "";
+            }
+        }
+    }
 }
