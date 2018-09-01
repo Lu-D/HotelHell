@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;// Required when using Event data.
 
-public class CantBuild : MonoBehaviour, IPointerDownHandler// required interface when using the OnPointerDown method.
+public class CantBuild : MonoBehaviour// required interface when using the OnPointerDown method.
 {
-    //Do this when the mouse is clicked over the selectable object this script is attached to.
-    public void OnPointerDown(PointerEventData eventData)
+    void OnMouseDown()
     {
-        Debug.Log(this.gameObject.name + " Was Clicked.");
+        GameObject.Find("PlayerController").GetComponent<ClickToBuild>().validBuild = false;
+    }
+
+    private void OnMouseUp()
+    {
+        GameObject.Find("PlayerController").GetComponent<ClickToBuild>().validBuild = true;
     }
 }

@@ -5,22 +5,24 @@ using UnityEngine;
 public class ClickToBuild : MonoBehaviour {
 
     public GameObject[] buildings;
-    public Camera c;
-    bool validBuild;
+    public bool validBuild;
 
 	// Use this for initialization
 	void Start () {
-		
+        validBuild = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(Input.GetMouseButtonDown(0))
+        Debug.Log(validBuild);
 
-        if (Input.GetMouseButtonDown(0) && validBuild)
+        if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(buildings[0], c.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), Quaternion.identity);
+
+            if (validBuild) {
+                Instantiate(buildings[0], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
+            }
         }
 	}
 }
