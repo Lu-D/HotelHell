@@ -20,6 +20,10 @@ public class EnemyControlScript : MonoBehaviour
     public bool isLast;
     private Animator anim;
 
+    public AudioClip cash;
+    public AudioClip bell;
+    private AudioSource audioSource;
+
     // Use this for initialization
     void Start()
     {
@@ -32,6 +36,7 @@ public class EnemyControlScript : MonoBehaviour
         isCaptured = false;
         isLast = false;
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -81,6 +86,8 @@ public class EnemyControlScript : MonoBehaviour
 
     public IEnumerator moveTowardsAttractor(Transform attractor)
     {
+        audioSource.clip = cash;
+        audioSource.Play();
         updateAnim(transform.position, attractor.position);
         Debug.Log("movetowards Attractor");
         while (isCaptured && Vector3.Distance(transform.position, attractor.position) > 0.4)
@@ -92,7 +99,8 @@ public class EnemyControlScript : MonoBehaviour
 
     public IEnumerator moveTowardsExit(Vector3 exit)
     {
-        Debug.Log("movetowards exit");
+        audioSource.clip = bell;
+        audioSource.Play();
         updateAnim(transform.position, exit);
         while (Vector3.Distance(transform.position, exit) > 0.01)
         {
@@ -107,7 +115,7 @@ public class EnemyControlScript : MonoBehaviour
 
     public IEnumerator derez(float timeSpentIn, BAttraction Attractor)
     {
-        //gameObject.GetComponent<Renderer>().enabled = false;
+        gameObject.GetComponent<Renderer>().enabled = false;
         Attractor.currCapacity++;
 
         ClickToBuild UIcontrol = GameObject.Find("PlayerController").GetComponent<ClickToBuild>();
@@ -117,7 +125,7 @@ public class EnemyControlScript : MonoBehaviour
         
       
         Attractor.currCapacity--;
-        //gameObject.GetComponent<Renderer>().enabled = 
+        gameObject.GetComponent<Renderer>().enabled = true;
         isLeaving = true;
         isCaptured = false;
         yield return moveTowardsExit(capturedTransform);
