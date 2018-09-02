@@ -38,7 +38,7 @@ public class ClickToBuild : MonoBehaviour {
     public void setCursor(int buildArrayIndx)
     {
         cursorHotspot = new Vector2(buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
-        Cursor.SetCursor(buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture, cursorHotspot, cursorMode);     
+        Cursor.SetCursor(buildings[buildArrayIndx].GetComponent<BAttraction>().currTextures[0], cursorHotspot, cursorMode);     
     }
 
     void build(string currBuilding, int buildArrayIndx)

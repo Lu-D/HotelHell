@@ -201,7 +201,11 @@ MonoBehaviour:
   maxCapacity: 2
   timeSpentIn: 1
   costToBuild: 1
-  currTextures: []
+  currTextures:
+  - {fileID: 2800000, guid: 1860f26cfa765164399dfd0c69db420e, type: 3}
+  - {fileID: 2800000, guid: 22be96226a2524e47a056297319eaa7f, type: 3}
+  - {fileID: 2800000, guid: 00efa91433ded7348840f6ffbab1ade1, type: 3}
+  - {fileID: 2800000, guid: 3f37819ca70543f408b8a10f88c9dd67, type: 3}
 --- !u!212 &212276568694447184
 SpriteRenderer:
   m_ObjectHideFlags: 1
