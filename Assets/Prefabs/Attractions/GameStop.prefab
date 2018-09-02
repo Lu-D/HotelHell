@@ -211,6 +211,11 @@ MonoBehaviour:
   - {fileID: 2800000, guid: fac6497b81b411a41a2a659c55e589c4, type: 3}
   - {fileID: 2800000, guid: 39980500ae2b3624cb505fe562d543e4, type: 3}
   - {fileID: 2800000, guid: a250a4e9d273c6e4ead27e3214186dce, type: 3}
+  invalidTextures:
+  - {fileID: 2800000, guid: 2390015039e755b408fd45691ddcedb0, type: 3}
+  - {fileID: 2800000, guid: abc3df0f53e316a419977021cc364502, type: 3}
+  - {fileID: 2800000, guid: 10a207f70e312834c88f31f6012147da, type: 3}
+  - {fileID: 2800000, guid: 64e0a071306cdeb4e8a31d16d7e4f974, type: 3}
 --- !u!212 &212276568694447184
 SpriteRenderer:
   m_ObjectHideFlags: 1

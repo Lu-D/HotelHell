@@ -13,6 +13,7 @@ public class BAttraction : MonoBehaviour {
 
     public Sprite[] sprites;
     public Texture2D[] textures;
+    public Texture2D[] invalidTextures;
 
 	// Use this for initialization
 	void Start () {

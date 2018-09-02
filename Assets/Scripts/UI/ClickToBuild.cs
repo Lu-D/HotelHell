@@ -16,6 +16,7 @@ public class ClickToBuild : MonoBehaviour {
     public int buildArray;
 
     private Vector2 cursorHotspot;
+    private int currMouseTexture;
 
 
     // Use this for initialization
@@ -31,6 +32,11 @@ public class ClickToBuild : MonoBehaviour {
         isBuilding = true;
     }
 
+    public void test()
+    {
+        Debug.Log("working");
+    }
+
     public void testAttract(string building)
     {
         buildType = building;
@@ -40,6 +46,7 @@ public class ClickToBuild : MonoBehaviour {
     {
         buildArray = buildArrayIndx;
         cursorHotspot = new Vector2(buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+        currMouseTexture = 0;
         Cursor.SetCursor(buildings[buildArrayIndx].GetComponent<BAttraction>().textures[0], cursorHotspot, cursorMode);     
     }
 
@@ -88,6 +95,16 @@ public class ClickToBuild : MonoBehaviour {
 
         }
 
+        if(isBuilding && !validBuild)
+        {
+            cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+            Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().invalidTextures[currMouseTexture], cursorHotspot, cursorMode);
+        }
+        else if(isBuilding && validBuild)
+        {
+            Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[currMouseTexture], cursorHotspot, cursorMode);
+        }
+
         if (isBuilding && Input.GetKeyDown("space"))
         {
             rotationDegrees += 90;
@@ -103,6 +120,7 @@ public class ClickToBuild : MonoBehaviour {
             {
                 buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[1];
                 cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+                currMouseTexture = 1;
                 Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[1], cursorHotspot, cursorMode);
 
             }
@@ -110,18 +128,21 @@ public class ClickToBuild : MonoBehaviour {
             {
                 buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[2];
                 cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+                currMouseTexture = 2;
                 Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[2], cursorHotspot, cursorMode);
             }
             else if (rotationDegrees == 270)
             {
                 buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[3];
                 cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+                currMouseTexture = 3;
                 Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[3], cursorHotspot, cursorMode);
             }
             else
             {
                 buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[0];
                 cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+                currMouseTexture = 0;
                 Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[0], cursorHotspot, cursorMode);
             }
 
@@ -142,6 +163,7 @@ public class ClickToBuild : MonoBehaviour {
             isBuilding = false;
             buildType = "";
             rotationDegrees = 0;
+            currMouseTexture = 0;
         }
     }
 }

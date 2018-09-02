@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114726835134093010}
   - component: {fileID: 60877569094289546}
   - component: {fileID: 50412012479843866}
+  - component: {fileID: 114453815491008966}
   m_Layer: 0
   m_Name: AMC
   m_TagString: Attraction
@@ -208,6 +209,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62313753, y: 0.62533593}
   m_EdgeRadius: 0
+--- !u!114 &114453815491008966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118736423936578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &114726835134093010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -235,6 +255,11 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 476d501bad758704aa9f5da09575fa32, type: 3}
   - {fileID: 2800000, guid: 5a0c9ff9edb0cf94992d74a2894ab575, type: 3}
   - {fileID: 2800000, guid: 0fccd23bdf91c8e4d9974f9d1b2160d9, type: 3}
+  invalidTextures:
+  - {fileID: 2800000, guid: 00f46b8e0174a5640ac922a7bfa02ec4, type: 3}
+  - {fileID: 2800000, guid: c75aa759142cd5c4f9aafaddac7c85ea, type: 3}
+  - {fileID: 2800000, guid: b2ad68f3be69cdb4192e40eb20238d49, type: 3}
+  - {fileID: 2800000, guid: a78d0fba8f5bf6a4383ad706b257255d, type: 3}
 --- !u!212 &212276568694447184
 SpriteRenderer:
   m_ObjectHideFlags: 1
