@@ -17,6 +17,7 @@ public class ClickToBuild : MonoBehaviour {
 
     private Vector2 cursorHotspot;
     private int currMouseTexture;
+    public GameObject buildTextures;
 
 
     // Use this for initialization
@@ -40,6 +41,7 @@ public class ClickToBuild : MonoBehaviour {
     public void testAttract(string building)
     {
         buildType = building;
+        buildTextures.SetActive(true);
     }
 
     public void setCursor(int buildArrayIndx)
@@ -69,6 +71,7 @@ public class ClickToBuild : MonoBehaviour {
                 buildType = "";
                 currMoney -= buildings[buildArrayIndx].GetComponent<BAttraction>().costToBuild;
                 rotationDegrees = 0;
+                buildTextures.SetActive(false);
                 buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[0];
             }
         }
@@ -104,6 +107,7 @@ public class ClickToBuild : MonoBehaviour {
         {
             Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[currMouseTexture], cursorHotspot, cursorMode);
         }
+
 
         if (isBuilding && Input.GetKeyDown("space"))
         {
@@ -162,6 +166,7 @@ public class ClickToBuild : MonoBehaviour {
             Cursor.SetCursor(null, Vector2.zero, cursorMode);
             isBuilding = false;
             buildType = "";
+            buildTextures.SetActive(false);
             rotationDegrees = 0;
             currMouseTexture = 0;
         }
