@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: KidWalkLeft
+  m_Name: AdultWalkRight
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,9 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 709ee4dfc133e164ca21122afd732b08, type: 3}
-    - time: 0.8333333
-      value: {fileID: 21300000, guid: e18176d511218444fb9c2bf784bcb3dd, type: 3}
+      value: {fileID: 21300000, guid: 3051eecff60b70148a6b6a6e1a2d4308, type: 3}
+    - time: 0.81666666
+      value: {fileID: 21300000, guid: f533ddc1bba715e48834227417bcba16, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -41,14 +41,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 709ee4dfc133e164ca21122afd732b08, type: 3}
-    - {fileID: 21300000, guid: e18176d511218444fb9c2bf784bcb3dd, type: 3}
+    - {fileID: 21300000, guid: 3051eecff60b70148a6b6a6e1a2d4308, type: 3}
+    - {fileID: 21300000, guid: f533ddc1bba715e48834227417bcba16, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.84999996
+    m_StopTime: 0.8333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
