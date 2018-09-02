@@ -15,9 +15,10 @@ public class EnemyControlScript : MonoBehaviour
     private int nextWayPoint;
     private bool isActive = true;
     public int hotelSpace;
-    public int cardDegrees;
+    private float cardDegrees;
     private int waveEntered;
     public bool isLast;
+    private Animator anim;
 
     // Use this for initialization
     void Start()
@@ -30,11 +31,37 @@ public class EnemyControlScript : MonoBehaviour
         nextWayPoint = 0;
         isCaptured = false;
         isLast = false;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+
+    void updateAnim(Vector3 origin, Vector3 target)
+    {
+        anim.SetBool("Up", false);
+        anim.SetBool("Down", false);
+        anim.SetBool("Left", false);
+        anim.SetBool("Right", false);
+        Vector3 direction = target - origin;
+        if(Vector3.Angle(Vector3.up, direction) <= 45)
+        {
+            anim.SetBool("Up", true);
+        }
+        else if(Vector3.Angle(Vector3.down, direction) <= 45)
+        {
+            anim.SetBool("Down", true);
+        }
+        else if (Vector3.Angle(Vector3.right, direction) < 45)
+        {
+            anim.SetBool("Right", true);
+        }
+        else if (Vector3.Angle(Vector3.left, direction) < 45)
+        {
+            anim.SetBool("Left", true);
+        }
     }
 
     //public IEnumerator moveTowardsNext()
@@ -48,12 +75,13 @@ public class EnemyControlScript : MonoBehaviour
 
     public void moveTowardsNext()
     {
-        
+        updateAnim(transform.position, wayPoints[nextWayPoint].transform.position);
         transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
     }
 
     public IEnumerator moveTowardsAttractor(Transform attractor)
     {
+        updateAnim(transform.position, attractor.position);
         Debug.Log("movetowards Attractor");
         while (isCaptured && Vector3.Distance(transform.position, attractor.position) > 0.4)
         {
@@ -65,7 +93,7 @@ public class EnemyControlScript : MonoBehaviour
     public IEnumerator moveTowardsExit(Vector3 exit)
     {
         Debug.Log("movetowards exit");
-
+        updateAnim(transform.position, exit);
         while (Vector3.Distance(transform.position, exit) > 0.01)
         {
             transform.position = Vector3.MoveTowards(transform.position, exit, moveSpeed * Time.deltaTime);
@@ -93,7 +121,6 @@ public class EnemyControlScript : MonoBehaviour
         isLeaving = true;
         isCaptured = false;
         yield return moveTowardsExit(capturedTransform);
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
