@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114227883176769508}
   - component: {fileID: 60405839253939402}
   - component: {fileID: 50407305363035746}
+  - component: {fileID: 95695952693176712}
   m_Layer: 8
   m_Name: Tank(old man)
   m_TagString: Enemy
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1420009971123150}
   m_LocalRotation: {x: -0, y: 0.008727774, z: -0, w: 0.9999619}
-  m_LocalPosition: {x: -3.210312, y: 2.872086, z: 0}
-  m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.5}
+  m_LocalPosition: {x: -0.996, y: 3.439, z: -0.002}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,7 +80,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.18, y: 0.18}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -87,10 +88,28 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.19376425, y: -0.25689763}
-      - {x: -0.18476215, y: 0.21187784}
-      - {x: 0.2657843, y: 0.20287356}
-      - {x: 0.25647625, y: -0.24789335}
+    - - {x: -0.033145066, y: -0.07974386}
+      - {x: -0.036708802, y: 0.01388216}
+      - {x: 0.036412057, y: 0.018424988}
+      - {x: 0.03544462, y: -0.07699188}
+--- !u!95 &95695952693176712
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1420009971123150}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e0c01d2b56438d749b2d4c664e12b7be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114227883176769508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,6 +139,7 @@ MonoBehaviour:
   isCaptured: 0
   isLeaving: 0
   hotelSpace: 3
+  isLast: 0
 --- !u!212 &212889117919866406
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -155,8 +175,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 381a0cfe44b8a0946a151726bde01794, type: 3}
-  m_Color: {r: 1, g: 0.08018869, b: 0.08018869, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 47c36433a1d0c784dafe6c011162593d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
