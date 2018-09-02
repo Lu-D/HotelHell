@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 public class EnemyControlScript : MonoBehaviour
 {
     public float moveSpeed;
-    public int maxEnergy;
-    private int energy;
     public GameObject[] notAffected;
     public GameObject[] wayPoints;
     private bool isCaptured;
@@ -15,6 +13,9 @@ public class EnemyControlScript : MonoBehaviour
     private bool isLeaving;
     private int nextWayPoint;
     private bool isActive = true;
+    public int hotelSpace;
+
+    private int waveEntered;
 
     // Use this for initialization
     void Start()
@@ -26,7 +27,6 @@ public class EnemyControlScript : MonoBehaviour
     {
         nextWayPoint = 0;
         isCaptured = false;
-        energy = maxEnergy;
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class EnemyControlScript : MonoBehaviour
     {
         while (!isCaptured && isActive && Vector3.Distance(transform.position, wayPoints[nextWayPoint].transform.position) > 0.1)
         {
-            transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed *((energy +moveSpeed)/(maxEnergy + moveSpeed)));
+            transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
             yield return null;
         }
     }
@@ -47,7 +47,7 @@ public class EnemyControlScript : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, attractor.position) > 0.5)
         {
-            transform.position = Vector3.MoveTowards(transform.position, attractor.position, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, attractor.position, moveSpeed * Time.deltaTime);
             yield return null;
         }
     }
@@ -56,7 +56,7 @@ public class EnemyControlScript : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, exit) > 0.01)
         {
-            transform.position = Vector3.MoveTowards(transform.position, exit, moveSpeed * ((energy + moveSpeed) / (maxEnergy + moveSpeed)) * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, exit, moveSpeed * Time.deltaTime);
             yield return null;
         }
         isLeaving = false;
@@ -71,7 +71,10 @@ public class EnemyControlScript : MonoBehaviour
 
         ClickToBuild UIcontrol = GameObject.Find("PlayerController").GetComponent<ClickToBuild>();
         UIcontrol.currMoney += Attractor.moneyEarned;
+
         yield return new WaitForSeconds(timeSpentIn);
+        
+      
         Attractor.currCapacity--;
         gameObject.GetComponent<Renderer>().enabled = isLeaving = true;
         isCaptured = false;
@@ -82,10 +85,13 @@ public class EnemyControlScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.transform.tag == "Attraction Collider" && energy > 0)
+        if (other.transform.tag == "Attraction Collider")
         {
             GameObject Attractor = other.transform.parent.gameObject;
-            if(Attractor.GetComponent<BAttraction>().currCapacity < Attractor.GetComponent<BAttraction>().maxCapacity)
+
+            waveEntered = GameObject.Find("SpawnPoint").GetComponent<SpawnControlScript>().waveNumber;
+
+            if (Attractor.GetComponent<BAttraction>().currCapacity < Attractor.GetComponent<BAttraction>().maxCapacity)
             {
                 isCaptured = true;
                 capturedTransform = transform.position;
@@ -96,16 +102,16 @@ public class EnemyControlScript : MonoBehaviour
         {
             BAttraction Attractor = other.transform.gameObject.GetComponent<BAttraction>();
             StartCoroutine(derez(Attractor.timeSpentIn, Attractor));
-            energy -= Attractor.energySubtraction;
+            //energy -= Attractor.energySubtraction;
 
-            if(energy <= 0)
-            {
-                if(energy < 0)
-                {
-                    energy = 0;
-                }
-                transform.gameObject.GetComponent<Renderer>().material.color = Color.grey;
-            }
+            //if(energy <= 0)
+            //{
+            //    if(energy < 0)
+            //    {
+            //        energy = 0;
+            //    }
+            //    transform.gameObject.GetComponent<Renderer>().material.color = Color.grey;
+            //}
         }
         else if (other.transform.tag == "Waypoint")
         {
@@ -115,18 +121,15 @@ public class EnemyControlScript : MonoBehaviour
                 StartCoroutine(moveTowardsNext());
             }
         }
-        else if(other.transform.tag=="Final")
+        else if (other.transform.tag == "Final")
         {
-            if (energy <= 0)
-                nextWayPoint += 2;
-            else
                 ++nextWayPoint;
             StartCoroutine(moveTowardsNext());
         }
         else if(other.transform.tag == "Town")
         {
             TownControlScript control = other.transform.gameObject.GetComponent <TownControlScript>();
-            control.trashCount += energy * control.trashPerEnergy;
+            control.trashCount += hotelSpace;
             if(control.trashCount > control.trashCapacity)
             {
                 SceneManager.LoadScene("gameOverScene");
