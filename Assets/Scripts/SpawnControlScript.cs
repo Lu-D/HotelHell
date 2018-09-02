@@ -83,13 +83,14 @@ public class SpawnControlScript : MonoBehaviour {
     void spawn(GameObject enemy)
     {
         GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
+        enemyObj.transform.Rotate(0, 0, -180f, Space.Self);
         enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext();
     }
 
     void spawnLast(GameObject enemy)
     {
         GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
-        enemyObj.transform.Rotate(0, 0, 180f, Space.Self);
+        enemyObj.transform.Rotate(0, 0, -180f, Space.Self);
         enemyObj.GetComponent<EnemyControlScript>().isLast = true;
         enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext();
     }
