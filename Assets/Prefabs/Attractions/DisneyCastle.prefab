@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114726835134093010}
   - component: {fileID: 60877569094289546}
   m_Layer: 0
-  m_Name: Attraction 2
+  m_Name: DisneyCastle
   m_TagString: Attraction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,8 +200,9 @@ MonoBehaviour:
   moneyEarned: 2
   currCapacity: 0
   maxCapacity: 2
-  timeSpentIn: 3
+  timeSpentIn: 1
   costToBuild: 1
+  currEnemies: []
 --- !u!212 &212276568694447184
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -33,6 +33,7 @@ public class SpawnControlScript : MonoBehaviour {
     {
         ++waveNumber;
         StartCoroutine(waveIterator());
+        
     }
 
     IEnumerator waveIterator()
