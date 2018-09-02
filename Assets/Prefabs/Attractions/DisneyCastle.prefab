@@ -193,11 +193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energySubtraction: 2
-  moneyEarned: 2
+  moneyEarned: 5
   currCapacity: 0
-  maxCapacity: 2
-  timeSpentIn: 1
-  costToBuild: 1
+  maxCapacity: 25
+  timeSpentIn: 10
+  costToBuild: 100
   sprites:
   - {fileID: 21300000, guid: 202afd99a5fa3ae41b4b3fbe3cf5fc07, type: 3}
   textures:

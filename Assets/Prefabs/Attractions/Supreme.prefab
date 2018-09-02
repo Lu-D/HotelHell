@@ -196,11 +196,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energySubtraction: 2
-  moneyEarned: 2
+  moneyEarned: 3
   currCapacity: 0
-  maxCapacity: 2
-  timeSpentIn: 1
-  costToBuild: 1
+  maxCapacity: 5
+  timeSpentIn: 3
+  costToBuild: 10
   sprites:
   - {fileID: 21300000, guid: 1860f26cfa765164399dfd0c69db420e, type: 3}
   - {fileID: 21300000, guid: 22be96226a2524e47a056297319eaa7f, type: 3}

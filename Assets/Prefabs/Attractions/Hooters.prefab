@@ -197,9 +197,9 @@ MonoBehaviour:
   energySubtraction: 2
   moneyEarned: 2
   currCapacity: 0
-  maxCapacity: 2
-  timeSpentIn: 1
-  costToBuild: 1
+  maxCapacity: 3
+  timeSpentIn: 2
+  costToBuild: 5
   sprites:
   - {fileID: 21300000, guid: 225f9a7b7cb630447a5e93fd3845024f, type: 3}
   - {fileID: 21300000, guid: 475686087bfe98a42be8b2a3d60dacc7, type: 3}
