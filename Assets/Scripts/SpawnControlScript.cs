@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnControlScript : MonoBehaviour {
     public float cooldown;
@@ -33,7 +34,7 @@ public class SpawnControlScript : MonoBehaviour {
     {
         ++waveNumber;
         StartCoroutine(waveIterator());
-        
+
     }
 
     IEnumerator waveIterator()
@@ -60,6 +61,7 @@ public class SpawnControlScript : MonoBehaviour {
             spawn(Enemies[enemyNum]);
             yield return new WaitForSeconds(maxCooldown);
         }
+
     }
 
     void spawn(GameObject enemy)

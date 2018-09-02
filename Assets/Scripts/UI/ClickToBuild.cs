@@ -50,8 +50,12 @@ public class ClickToBuild : MonoBehaviour {
 
             if (validBuild)
             {
-                GameObject building = (GameObject)Instantiate(buildings[buildArrayIndx], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[0].transform.rotation);
-                building.transform.Rotate(0, 0, rotationDegrees, Space.Self);
+                GameObject building = (GameObject)Instantiate(buildings[buildArrayIndx], Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), buildings[buildArrayIndx].transform.rotation);
+
+                if (currBuilding != "DisneyCastle")
+                {
+                    building.transform.Rotate(0, 0, rotationDegrees, Space.Self);
+                }
 
                 Cursor.SetCursor(null, Vector2.zero, cursorMode);
                 isBuilding = false;
