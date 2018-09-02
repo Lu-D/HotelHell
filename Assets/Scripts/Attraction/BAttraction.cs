@@ -11,7 +11,7 @@ public class BAttraction : MonoBehaviour {
     public float timeSpentIn;
     public int costToBuild;
 
-    public GameObject[] currEnemies;
+    public Texture[] currTextures;
 
 	// Use this for initialization
 	void Start () {
