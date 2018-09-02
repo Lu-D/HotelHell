@@ -11,7 +11,8 @@ public class BAttraction : MonoBehaviour {
     public float timeSpentIn;
     public int costToBuild;
 
-    public Texture2D[] currTextures;
+    public Sprite[] sprites;
+    public Texture2D defaultTexture;
 
 	// Use this for initialization
 	void Start () {

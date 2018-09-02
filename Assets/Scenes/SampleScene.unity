@@ -436,6 +436,7 @@ MonoBehaviour:
   cursorMode: 0
   currMoney: 0
   moneyText: {fileID: 2092520654}
+  buildArray: 0
 --- !u!4 &283186497
 Transform:
   m_ObjectHideFlags: 0

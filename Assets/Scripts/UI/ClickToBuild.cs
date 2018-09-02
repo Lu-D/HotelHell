@@ -13,6 +13,7 @@ public class ClickToBuild : MonoBehaviour {
     public CursorMode cursorMode = CursorMode.Auto;
     public int currMoney;
     public Text moneyText;
+    public int buildArray;
 
     private Vector2 cursorHotspot;
 
@@ -37,8 +38,9 @@ public class ClickToBuild : MonoBehaviour {
 
     public void setCursor(int buildArrayIndx)
     {
+        buildArray = buildArrayIndx;
         cursorHotspot = new Vector2(buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
-        Cursor.SetCursor(buildings[buildArrayIndx].GetComponent<BAttraction>().currTextures[0], cursorHotspot, cursorMode);     
+        Cursor.SetCursor(buildings[buildArrayIndx].GetComponent<BAttraction>().defaultTexture, cursorHotspot, cursorMode);     
     }
 
     void build(string currBuilding, int buildArrayIndx)
@@ -56,6 +58,7 @@ public class ClickToBuild : MonoBehaviour {
                 buildType = "";
                 currMoney -= buildings[buildArrayIndx].GetComponent<BAttraction>().costToBuild;
                 rotationDegrees = 0;
+                buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[0];
             }
         }
     }
@@ -86,6 +89,23 @@ public class ClickToBuild : MonoBehaviour {
             rotationDegrees += 90;
             Debug.Log(rotationDegrees);
             Debug.Log("key pressed");
+
+            if (rotationDegrees == 90)
+            {
+                buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[1];
+            }
+            else if (rotationDegrees == 180)
+            {
+                buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[2];
+            }
+            else if (rotationDegrees == 270)
+            {
+                buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[3];
+            }
+            else
+            {
+                buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[0];
+            }
 
         }
 

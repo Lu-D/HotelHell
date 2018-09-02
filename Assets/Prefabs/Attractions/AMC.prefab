@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212276568694447184}
   - component: {fileID: 114726835134093010}
   - component: {fileID: 60877569094289546}
+  - component: {fileID: 50412012479843866}
   m_Layer: 0
   m_Name: AMC
   m_TagString: Attraction
@@ -68,7 +69,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1666614418090996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -81,9 +82,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1378602567820682}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.012, y: -0.34, z: 0}
-  m_LocalScale: {x: 2.265625, y: 0.09953125, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.011999965, y: -0.34000003, z: 0}
+  m_LocalScale: {x: 2.265627, y: 0.09953137, z: 1}
   m_Children: []
   m_Father: {fileID: 4607628684343196}
   m_RootOrder: 0
@@ -95,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118736423936578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3344212, y: -1.0131831, z: -0.035156}
+  m_LocalPosition: {x: 2.3909628, y: 2.7254934, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 4.677479}
   m_Children:
   - {fileID: 4493007238401248}
@@ -103,6 +104,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50412012479843866
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118736423936578}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!60 &60877569094289546
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -204,11 +225,12 @@ MonoBehaviour:
   maxCapacity: 2
   timeSpentIn: 1
   costToBuild: 1
-  currTextures:
-  - {fileID: 2800000, guid: 0acd1bd8d1d3f674a8fcfcaad10b6d02, type: 3}
-  - {fileID: 2800000, guid: 090b982b46ed4a54fa0e5479d9fe7eaa, type: 3}
-  - {fileID: 2800000, guid: 152f908c7a3197e488bc4db34cab14b7, type: 3}
-  - {fileID: 2800000, guid: 8da902cc163ad154fb16caaec2636a34, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 0acd1bd8d1d3f674a8fcfcaad10b6d02, type: 3}
+  - {fileID: 21300000, guid: 090b982b46ed4a54fa0e5479d9fe7eaa, type: 3}
+  - {fileID: 21300000, guid: 152f908c7a3197e488bc4db34cab14b7, type: 3}
+  - {fileID: 21300000, guid: 8da902cc163ad154fb16caaec2636a34, type: 3}
+  defaultTexture: {fileID: 2800000, guid: 0acd1bd8d1d3f674a8fcfcaad10b6d02, type: 3}
 --- !u!212 &212276568694447184
 SpriteRenderer:
   m_ObjectHideFlags: 1

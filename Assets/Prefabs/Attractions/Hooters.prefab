@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4607628684343196}
   - component: {fileID: 212276568694447184}
   - component: {fileID: 114726835134093010}
-  - component: {fileID: 60877569094289546}
+  - component: {fileID: 60847389284052520}
   m_Layer: 0
   m_Name: Hooters
   m_TagString: Attraction
@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118736423936578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.037, y: -0.49, z: -0.035156}
+  m_LocalPosition: {x: -0.21226496, y: 4.24461, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4493007238401248}
@@ -103,7 +103,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60877569094289546
+--- !u!60 &60847389284052520
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,13 +127,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.10441363, y: 0.15243444}
-      - {x: -0.15492928, y: 0.094472945}
-      - {x: -0.16079354, y: -0.15088138}
-      - {x: 0.019995451, y: -0.1566957}
-      - {x: 0.16135436, y: -0.15281925}
-      - {x: 0.15560693, y: 0.09254295}
-      - {x: 0.09943795, y: 0.16125864}
+    - - {x: -0.12, y: 0.16}
+      - {x: -0.16, y: 0.12}
+      - {x: -0.16, y: -0.16}
+      - {x: 0.16, y: -0.16}
+      - {x: 0.16, y: 0.12}
+      - {x: 0.12, y: 0.16}
 --- !u!61 &61023662078764916
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -201,11 +200,12 @@ MonoBehaviour:
   maxCapacity: 2
   timeSpentIn: 1
   costToBuild: 1
-  currTextures:
-  - {fileID: 2800000, guid: 225f9a7b7cb630447a5e93fd3845024f, type: 3}
-  - {fileID: 2800000, guid: 475686087bfe98a42be8b2a3d60dacc7, type: 3}
-  - {fileID: 2800000, guid: 69ffd08f6f937ec438c1bf15792b29be, type: 3}
-  - {fileID: 2800000, guid: 6709350079649484aa534938b3573aff, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 225f9a7b7cb630447a5e93fd3845024f, type: 3}
+  - {fileID: 21300000, guid: 475686087bfe98a42be8b2a3d60dacc7, type: 3}
+  - {fileID: 21300000, guid: 69ffd08f6f937ec438c1bf15792b29be, type: 3}
+  - {fileID: 21300000, guid: 6709350079649484aa534938b3573aff, type: 3}
+  defaultTexture: {fileID: 2800000, guid: 225f9a7b7cb630447a5e93fd3845024f, type: 3}
 --- !u!212 &212276568694447184
 SpriteRenderer:
   m_ObjectHideFlags: 1

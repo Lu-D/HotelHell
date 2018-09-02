@@ -8,9 +8,9 @@ public class EnemyControlScript : MonoBehaviour
     public float moveSpeed;
     public GameObject[] notAffected;
     public GameObject[] wayPoints;
-    private bool isCaptured;
+    public bool isCaptured;
     private Vector3 capturedTransform;
-    private bool isLeaving;
+    public bool isLeaving;
     private int nextWayPoint;
     private bool isActive = true;
     public int hotelSpace;
@@ -34,18 +34,24 @@ public class EnemyControlScript : MonoBehaviour
     {
     }
 
-    public IEnumerator moveTowardsNext()
+    //public IEnumerator moveTowardsNext()
+    //{
+    //    while (!isCaptured && isActive && Vector3.Distance(transform.position, wayPoints[nextWayPoint].transform.position) > 0.1)
+    //    {
+    //        transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
+    //        yield return null;
+    //    }
+    //}
+
+    public void moveTowardsNext()
     {
-        while (!isCaptured && isActive && Vector3.Distance(transform.position, wayPoints[nextWayPoint].transform.position) > 0.1)
-        {
-            transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
-            yield return null;
-        }
+        transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
     }
 
     public IEnumerator moveTowardsAttractor(Transform attractor)
     {
-        while (Vector3.Distance(transform.position, attractor.position) > 0.5)
+        Debug.Log("movetowards Attractor");
+        while (isCaptured && Vector3.Distance(transform.position, attractor.position) > 0.4)
         {
             transform.position = Vector3.MoveTowards(transform.position, attractor.position, moveSpeed * Time.deltaTime);
             yield return null;
@@ -54,19 +60,22 @@ public class EnemyControlScript : MonoBehaviour
 
     public IEnumerator moveTowardsExit(Vector3 exit)
     {
+        Debug.Log("movetowards exit");
+
         while (Vector3.Distance(transform.position, exit) > 0.01)
         {
             transform.position = Vector3.MoveTowards(transform.position, exit, moveSpeed * Time.deltaTime);
             yield return null;
         }
+
         isLeaving = false;
-        StartCoroutine(moveTowardsNext());
+
+        moveTowardsNext();
     }
 
     public IEnumerator derez(float timeSpentIn, BAttraction Attractor)
     {
-        transform.GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
-        gameObject.GetComponent<Renderer>().enabled = false;
+        //gameObject.GetComponent<Renderer>().enabled = false;
         Attractor.currCapacity++;
 
         ClickToBuild UIcontrol = GameObject.Find("PlayerController").GetComponent<ClickToBuild>();
@@ -76,16 +85,17 @@ public class EnemyControlScript : MonoBehaviour
         
       
         Attractor.currCapacity--;
-        gameObject.GetComponent<Renderer>().enabled = isLeaving = true;
+        //gameObject.GetComponent<Renderer>().enabled = 
+        isLeaving = true;
         isCaptured = false;
-        StartCoroutine(moveTowardsExit(capturedTransform));
+        yield return moveTowardsExit(capturedTransform);
 
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.transform.tag == "Attraction Collider")
+        if (other.transform.tag == "Attraction Collider" )
         {
             GameObject Attractor = other.transform.parent.gameObject;
 
@@ -93,12 +103,14 @@ public class EnemyControlScript : MonoBehaviour
 
             if (Attractor.GetComponent<BAttraction>().currCapacity < Attractor.GetComponent<BAttraction>().maxCapacity)
             {
+                transform.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                 isCaptured = true;
                 capturedTransform = transform.position;
+                //other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                 StartCoroutine(moveTowardsAttractor(Attractor.transform));
             } 
         }
-        else if(other.transform.tag == "Attraction")
+        else if(other.transform.tag == "Attraction" )
         {
             BAttraction Attractor = other.transform.gameObject.GetComponent<BAttraction>();
             StartCoroutine(derez(Attractor.timeSpentIn, Attractor));
@@ -118,13 +130,13 @@ public class EnemyControlScript : MonoBehaviour
             if(!isLeaving)
             {
                 ++nextWayPoint;
-                StartCoroutine(moveTowardsNext());
+                moveTowardsNext();
             }
         }
         else if (other.transform.tag == "Final")
         {
                 ++nextWayPoint;
-            StartCoroutine(moveTowardsNext());
+            moveTowardsNext();
         }
         else if(other.transform.tag == "Town")
         {

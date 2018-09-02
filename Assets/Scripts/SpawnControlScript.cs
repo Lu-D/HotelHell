@@ -65,7 +65,7 @@ public class SpawnControlScript : MonoBehaviour {
     void spawn(GameObject enemy)
     {
         GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
-        StartCoroutine(enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext());
+        enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext();
     }
 
 }
