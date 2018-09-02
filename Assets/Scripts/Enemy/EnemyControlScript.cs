@@ -15,7 +15,7 @@ public class EnemyControlScript : MonoBehaviour
     private int nextWayPoint;
     private bool isActive = true;
     public int hotelSpace;
-
+    public int cardDegrees;
     private int waveEntered;
     public bool isLast;
 
@@ -48,6 +48,7 @@ public class EnemyControlScript : MonoBehaviour
 
     public void moveTowardsNext()
     {
+        
         transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
     }
 
