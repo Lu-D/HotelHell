@@ -46,20 +46,24 @@ public class SpawnControlScript : MonoBehaviour {
         GameObject.Find("StartButton").GetComponent<Button>().interactable = false;
 
         waves.Add(0);
+        waves.Add(0);
         //if (waveNumber%7 == 0 && waveNumber > 6)
         //{
         //    waves.Add(4);
         //}
-        if(waveNumber%5 == 0 && waveNumber > 4)
+        if (waveNumber%5 == 0 && waveNumber > 4)
         {
+            waves.Add(3);
             waves.Add(3);
         }
         if(waveNumber%4 == 0 && waveNumber > 3)
         {
             waves.Add(2);
+            waves.Add(2);
         }
         if(waveNumber%3 == 0 && waveNumber > 1)
         {
+            waves.Add(1);
             waves.Add(1);
         }
         foreach (int enemyNum in waves)

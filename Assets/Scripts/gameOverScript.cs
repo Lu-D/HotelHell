@@ -9,12 +9,12 @@ public class gameOverScript : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), gameOverTexture);
-        if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2, 150, 25), "Restart"))
+        GUI.DrawTexture(new Rect(0, 0, 825, 550), gameOverTexture);
+        if (GUI.Button(new Rect(Screen.width / 2 - 65, Screen.height / 2 +135, 150, 25), "Restart"))
         {
             SceneManager.LoadScene("SampleScene");
         }
-        if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 25, 150, 25), "Quit"))
+        if (GUI.Button(new Rect(Screen.width / 2 - 65 , Screen.height / 2 + 160, 150, 25), "Quit"))
         {
             Application.Quit();
         }
