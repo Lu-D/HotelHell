@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 366977923}
   - component: {fileID: 366977922}
   m_Layer: 5
-  m_Name: Text
+  m_Name: StartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2791,7 +2791,7 @@ Prefab:
         type: 2}
       propertyPath: Enemies.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1915909044}
     - target: {fileID: 114709919680508630, guid: 2f121da65c025a649819a1cf4adb2d95,
         type: 2}
       propertyPath: Enemies.Array.data[4]

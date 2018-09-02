@@ -40,7 +40,7 @@ public class ClickToBuild : MonoBehaviour {
     {
         buildArray = buildArrayIndx;
         cursorHotspot = new Vector2(buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArrayIndx].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
-        Cursor.SetCursor(buildings[buildArrayIndx].GetComponent<BAttraction>().defaultTexture, cursorHotspot, cursorMode);     
+        Cursor.SetCursor(buildings[buildArrayIndx].GetComponent<BAttraction>().textures[0], cursorHotspot, cursorMode);     
     }
 
     void build(string currBuilding, int buildArrayIndx)
@@ -94,21 +94,35 @@ public class ClickToBuild : MonoBehaviour {
             Debug.Log(rotationDegrees);
             Debug.Log("key pressed");
 
+            if(rotationDegrees > 360)
+            {
+                rotationDegrees -= 360;
+            }
+
             if (rotationDegrees == 90)
             {
                 buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[1];
+                cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+                Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[1], cursorHotspot, cursorMode);
+
             }
             else if (rotationDegrees == 180)
             {
                 buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[2];
+                cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+                Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[2], cursorHotspot, cursorMode);
             }
             else if (rotationDegrees == 270)
             {
                 buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[3];
+                cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+                Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[3], cursorHotspot, cursorMode);
             }
             else
             {
                 buildings[buildArray].GetComponent<SpriteRenderer>().sprite = buildings[buildArray].GetComponent<BAttraction>().sprites[0];
+                cursorHotspot = new Vector2(buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.width / 2, buildings[buildArray].GetComponent<SpriteRenderer>().sprite.texture.height / 2);
+                Cursor.SetCursor(buildings[buildArray].GetComponent<BAttraction>().textures[0], cursorHotspot, cursorMode);
             }
 
         }

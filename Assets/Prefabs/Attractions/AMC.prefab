@@ -230,7 +230,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 090b982b46ed4a54fa0e5479d9fe7eaa, type: 3}
   - {fileID: 21300000, guid: 152f908c7a3197e488bc4db34cab14b7, type: 3}
   - {fileID: 21300000, guid: 8da902cc163ad154fb16caaec2636a34, type: 3}
-  defaultTexture: {fileID: 2800000, guid: 0acd1bd8d1d3f674a8fcfcaad10b6d02, type: 3}
+  textures:
+  - {fileID: 2800000, guid: 0acd1bd8d1d3f674a8fcfcaad10b6d02, type: 3}
+  - {fileID: 2800000, guid: 476d501bad758704aa9f5da09575fa32, type: 3}
+  - {fileID: 2800000, guid: 5a0c9ff9edb0cf94992d74a2894ab575, type: 3}
+  - {fileID: 2800000, guid: 0fccd23bdf91c8e4d9974f9d1b2160d9, type: 3}
 --- !u!212 &212276568694447184
 SpriteRenderer:
   m_ObjectHideFlags: 1

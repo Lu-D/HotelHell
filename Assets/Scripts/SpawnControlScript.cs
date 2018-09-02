@@ -10,6 +10,8 @@ public class SpawnControlScript : MonoBehaviour {
     public int waveNumber;
     private List<int> waves;
 
+    private int currEnemy = 0;
+
     void Awake()
     {   
         maxCooldown = cooldown;
@@ -32,18 +34,22 @@ public class SpawnControlScript : MonoBehaviour {
     
     public void startWave()
     {
+        currEnemy = 0;
         ++waveNumber;
+        GameObject.Find("StartText").GetComponent<Text>().text = "Wave: " + waveNumber;
         StartCoroutine(waveIterator());
 
     }
 
     IEnumerator waveIterator()
     {
+        GameObject.Find("StartButton").GetComponent<Button>().interactable = false;
+
         waves.Add(0);
-        if (waveNumber%7 == 0 && waveNumber > 6)
-        {
-            waves.Add(4);
-        }
+        //if (waveNumber%7 == 0 && waveNumber > 6)
+        //{
+        //    waves.Add(4);
+        //}
         if(waveNumber%5 == 0 && waveNumber > 4)
         {
             waves.Add(3);
@@ -58,15 +64,32 @@ public class SpawnControlScript : MonoBehaviour {
         }
         foreach (int enemyNum in waves)
         {
-            spawn(Enemies[enemyNum]);
-            yield return new WaitForSeconds(maxCooldown);
+            ++currEnemy;
+            if (currEnemy == (waves.Count))
+            {
+                spawnLast(Enemies[enemyNum]);
+            }
+            else
+            {
+                spawn(Enemies[enemyNum]);
+                yield return new WaitForSeconds(maxCooldown);
+            }
         }
+
+
 
     }
 
     void spawn(GameObject enemy)
     {
         GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
+        enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext();
+    }
+
+    void spawnLast(GameObject enemy)
+    {
+        GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
+        enemyObj.GetComponent<EnemyControlScript>().isLast = true;
         enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext();
     }
 

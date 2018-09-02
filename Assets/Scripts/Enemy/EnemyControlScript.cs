@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class EnemyControlScript : MonoBehaviour
@@ -16,6 +17,7 @@ public class EnemyControlScript : MonoBehaviour
     public int hotelSpace;
 
     private int waveEntered;
+    public bool isLast;
 
     // Use this for initialization
     void Start()
@@ -27,6 +29,7 @@ public class EnemyControlScript : MonoBehaviour
     {
         nextWayPoint = 0;
         isCaptured = false;
+        isLast = false;
     }
 
     // Update is called once per frame
@@ -140,6 +143,13 @@ public class EnemyControlScript : MonoBehaviour
         }
         else if(other.transform.tag == "Town")
         {
+            //Debug.Log("good1");
+            if (isLast)
+            {
+                GameObject.Find("StartButton").GetComponent<Button>().interactable = true;
+                isLast = false;
+            }
+
             TownControlScript control = other.transform.gameObject.GetComponent <TownControlScript>();
             control.trashCount += hotelSpace;
             if(control.trashCount > control.trashCapacity)
@@ -148,6 +158,8 @@ public class EnemyControlScript : MonoBehaviour
             }
             isActive = false;
             Destroy(this.gameObject);
+
+            
         }
         else if(other.transform.tag == "Hotel")
         {
