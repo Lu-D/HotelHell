@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TownControlScript
+//Maintains trash bar
 public class TownControlScript : MonoBehaviour {
     public int trashCount = 0;
     public int trashCapacity;
@@ -10,17 +12,21 @@ public class TownControlScript : MonoBehaviour {
     public float timeForEachSubtract;
     public Slider trashSlider;
 
+    //trashToZero
+    //resets bar
     public void trashToZero()
     {
         trashCount = 0;
     }
 
-	// Use this for initialization
+	//Start
+    //on initialization
 	void Start () {
         StartCoroutine(subtractTrash());
 	}
 	
 	// Update is called once per frame
+    // updates bar every frame with the trash count
 	void Update () {
 
         if(trashCount < 0)
@@ -32,6 +38,8 @@ public class TownControlScript : MonoBehaviour {
         trashSlider.maxValue = trashCapacity;
 	}
 
+    //subtractTrash
+    //continually decrement the trashCount
     public IEnumerator subtractTrash()
     {
         while (trashCount < 2 * trashCapacity)

@@ -4,32 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//EnemyControlScript
+//Sets enemy behavior and modifies dependant scripts
 public class EnemyControlScript : MonoBehaviour
 {
     public float moveSpeed;
     public GameObject[] notAffected;
     public GameObject[] wayPoints;
     public bool isCaptured;
-    private Vector3 capturedTransform;
     public bool isLeaving;
-    private int nextWayPoint;
-    private bool isActive = true;
     public int hotelSpace;
-    private float cardDegrees;
-    private int waveEntered;
     public bool isLast;
+    private int nextWayPoint;
+    private int waveEntered;
+    private bool isActive = true;
+    private Vector3 capturedTransform;
+    private float cardDegrees;
     private Animator anim;
 
     public AudioClip cash;
     public AudioClip bell;
     private AudioSource audioSource;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
+    //Awake
+    //set necessary booleans and find dependant scripts
     void Awake()
     {
         nextWayPoint = 0;
@@ -39,11 +37,8 @@ public class EnemyControlScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    //updateAnim
+    //updates animator with the direction of movement for animation
     void updateAnim(Vector3 origin, Vector3 target)
     {
         anim.SetBool("Up", false);
@@ -69,21 +64,16 @@ public class EnemyControlScript : MonoBehaviour
         }
     }
 
-    //public IEnumerator moveTowardsNext()
-    //{
-    //    while (!isCaptured && isActive && Vector3.Distance(transform.position, wayPoints[nextWayPoint].transform.position) > 0.1)
-    //    {
-    //        transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
-    //        yield return null;
-    //    }
-    //}
-
+    //moveTowardsNext
+    //gives enemy a velocity towards next waypoint
     public void moveTowardsNext()
     {
         updateAnim(transform.position, wayPoints[nextWayPoint].transform.position);
         transform.GetComponent<Rigidbody2D>().velocity = ((wayPoints[nextWayPoint].transform.position - transform.position).normalized * moveSpeed);
     }
 
+    //moveTowardsAttractor
+    //moves enemy towards atraction using moveTowards
     public IEnumerator moveTowardsAttractor(Transform attractor)
     {
         audioSource.clip = cash;
@@ -97,6 +87,8 @@ public class EnemyControlScript : MonoBehaviour
         }
     }
 
+    //moveTowardsExit
+    //moves enemy away from attraction using moveTowards
     public IEnumerator moveTowardsExit(Vector3 exit)
     {
         audioSource.clip = bell;
@@ -113,6 +105,9 @@ public class EnemyControlScript : MonoBehaviour
         moveTowardsNext();
     }
 
+    //derez
+    //tracks enemy for duration it spends inside of an attraction
+    //increments money and capacity of attraction
     public IEnumerator derez(float timeSpentIn, BAttraction Attractor)
     {
         gameObject.GetComponent<Renderer>().enabled = false;
@@ -131,9 +126,11 @@ public class EnemyControlScript : MonoBehaviour
         yield return moveTowardsExit(capturedTransform);
     }
 
+    //OnTriggerEnter2D
+    //Handles collisions with all objects
     void OnTriggerEnter2D(Collider2D other)
     {
-
+        //When an enemy walks into field of an attraction
         if (other.transform.tag == "Attraction Collider" )
         {
             GameObject Attractor = other.transform.parent.gameObject;
@@ -145,25 +142,17 @@ public class EnemyControlScript : MonoBehaviour
                 transform.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                 isCaptured = true;
                 capturedTransform = transform.position;
-                //other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                 StartCoroutine(moveTowardsAttractor(Attractor.transform));
             } 
         }
+        //When an enemy walks into attraction
         else if(other.transform.tag == "Attraction" )
         {
             BAttraction Attractor = other.transform.gameObject.GetComponent<BAttraction>();
             StartCoroutine(derez(Attractor.timeSpentIn, Attractor));
-            //energy -= Attractor.energySubtraction;
 
-            //if(energy <= 0)
-            //{
-            //    if(energy < 0)
-            //    {
-            //        energy = 0;
-            //    }
-            //    transform.gameObject.GetComponent<Renderer>().material.color = Color.grey;
-            //}
         }
+        //waypoint system for determining path enemies should follow
         else if (other.transform.tag == "Waypoint")
         {
             if(!isLeaving)
@@ -172,11 +161,13 @@ public class EnemyControlScript : MonoBehaviour
                 moveTowardsNext();
             }
         }
+        //move off screen 
         else if (other.transform.tag == "Final")
         {
-                ++nextWayPoint;
+            ++nextWayPoint;
             moveTowardsNext();
         }
+        //adjust variables if enemy makes it into town
         else if(other.transform.tag == "Town")
         {
             //Debug.Log("good1");

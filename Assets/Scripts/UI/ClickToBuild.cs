@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//ClickToBuild
+//Build attractions
 public class ClickToBuild : MonoBehaviour {
 
     public GameObject[] buildings;
@@ -16,11 +18,11 @@ public class ClickToBuild : MonoBehaviour {
     public int buildArray;
 
     private Vector2 cursorHotspot;
-    private int currMouseTexture;
     public GameObject buildTextures;
+    private int currMouseTexture;
 
-
-    // Use this for initialization
+    // Start
+    // on initialization
     void Start () {
         validBuild = false;
         isBuilding = false;
@@ -29,6 +31,8 @@ public class ClickToBuild : MonoBehaviour {
         currMoney = 4;
 	}
 
+    //buildSelect
+    //sets state variable to true
     public void buildSelect() {
         isBuilding = true;
     }

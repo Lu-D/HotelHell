@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//startSceneScript
+//draws start screen when game begins or scene is on startScene
 public class startSceneScript : MonoBehaviour {
 
     public Texture startTexture;
 
+    //OnGUI
+    //adjusts size and placement of buttons and screen
     void OnGUI()
     {
         GUI.DrawTexture(new Rect(0, 0, 825, 550), startTexture);

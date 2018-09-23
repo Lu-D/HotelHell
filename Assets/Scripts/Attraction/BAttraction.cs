@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//BAttraction
+//Base variables for Attractions
 public class BAttraction : MonoBehaviour {
 
     public int energySubtraction;
@@ -14,25 +16,4 @@ public class BAttraction : MonoBehaviour {
     public Sprite[] sprites;
     public Texture2D[] textures;
     public Texture2D[] invalidTextures;
-
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    //public IEnumerator holdTime(float holdTime)
-    //{
-    //    ++currCapacity;
-    //    //collision.gameObject.GetComponent<Renderer>().enabled = false;
-    //    //collision.gameObject.GetComponent<EnemyControlScript>().isCaptured = true;
-    //    //collision.gameObject.GetComponent<EnemyControlScript>().energy -= energySubtraction;
-
-    //    yield return new WaitForSeconds(holdTime);
-
-    //    --currCapacity;
-    //}
 }

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//gameOverScript
+//draws gameover screen when scene changes to gameover
 public class gameOverScript : MonoBehaviour {
 
     public Texture gameOverTexture;
 
+    //OnGUI
+    //adjusts size and placement of buttons and screen
     void OnGUI()
     {
         GUI.DrawTexture(new Rect(0, 0, 825, 550), gameOverTexture);

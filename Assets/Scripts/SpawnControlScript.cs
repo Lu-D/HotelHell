@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//spawnControlScript
+//controls waves of enemies
 public class SpawnControlScript : MonoBehaviour {
     public float cooldown;
     public GameObject[] Enemies;
-    private float maxCooldown;
     public int waveNumber;
+    private float maxCooldown;
     private List<int> waves;
-
     private int currEnemy = 0;
 
+    //Awake
+    //sets necessary variables and adds three waves of enemies
     void Awake()
     {   
         maxCooldown = cooldown;
@@ -22,16 +25,9 @@ public class SpawnControlScript : MonoBehaviour {
             waves.Add(0);
         }
     }
-
-
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-    }
     
+    //startWave
+    //begins the waveIterator coroutine
     public void startWave()
     {
         currEnemy = 0;
@@ -41,16 +37,14 @@ public class SpawnControlScript : MonoBehaviour {
 
     }
 
+    //waveIterator
+    //Fills waves with enemies based on wave number
     IEnumerator waveIterator()
     {
         GameObject.Find("StartButton").GetComponent<Button>().interactable = false;
 
         waves.Add(0);
         waves.Add(0);
-        //if (waveNumber%7 == 0 && waveNumber > 6)
-        //{
-        //    waves.Add(4);
-        //}
         if (waveNumber%5 == 0 && waveNumber > 4)
         {
             waves.Add(3);
@@ -79,11 +73,10 @@ public class SpawnControlScript : MonoBehaviour {
                 yield return new WaitForSeconds(maxCooldown);
             }
         }
-
-
-
     }
 
+    //spawn
+    //spawns an enemy on the start waypoint
     void spawn(GameObject enemy)
     {
         GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
@@ -91,6 +84,8 @@ public class SpawnControlScript : MonoBehaviour {
         enemyObj.GetComponent<EnemyControlScript>().moveTowardsNext();
     }
 
+    //spawnLast
+    //spawns the last enemy in a wave for tracking
     void spawnLast(GameObject enemy)
     {
         GameObject enemyObj = (GameObject)Instantiate(enemy, transform.position, transform.rotation);
